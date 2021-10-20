@@ -7,7 +7,7 @@ DETECT_PLUGIN_ENTRY_POINT = 'googletranslate_detection_plug = googletranslate_ne
 
 setup(
     name='googletranslate_neon_plugin',
-    version='0.0.1',
+    version='0.0.2',
     description='',
     url='',
     author='JarbasAi',
@@ -15,7 +15,7 @@ setup(
     license='Apache-2.0',
     packages=['googletranslate_neon_plugin'],
     install_requires=["ovos-plugin-manager>=0.0.1a2",
-                      "google_trans_new"],
+                      "google_tx"],
     zip_safe=True,
     classifiers=[
         'Development Status :: 3 - Alpha',

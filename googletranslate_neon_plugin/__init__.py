@@ -1,12 +1,13 @@
 from ovos_plugin_manager.templates.language import LanguageDetector,\
     LanguageTranslator
-from google_trans_new import google_translator
+from google_tx import google_translator
 
 
 class GoogleTranslator(LanguageTranslator):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.translator = google_translator()
+        self.boost = False
 
     def translate(self, text, target=None, source=None):
         if self.boost and not source:
@@ -32,3 +33,4 @@ class GoogleDetector(LanguageDetector):
     def detect_probs(self, text):
         tx = self.translator.detect(text)
         return {"lang_code": tx[0], "lang": tx[1]}
+
