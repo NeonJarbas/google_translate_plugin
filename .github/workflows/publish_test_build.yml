@@ -23,7 +23,6 @@ jobs:
       - name: Increment Version
         run: |
           VER=$(python setup.py --version)
-#          python version_bump.py
       - name: Push Version Change
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
