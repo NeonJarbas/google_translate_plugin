@@ -63,7 +63,7 @@ with open("./version.py", "r", encoding="utf-8") as v:
 
 setup(
     name='googletranslate_neon_plugin',
-    version='0.0.2',
+    version=version,
     description='',
     url='',
     author='Neongecko',
