@@ -1,3 +1,2 @@
-ovos-plugin-manager>=0.0.1a2
-google_trans_new
-google_tx
+ovos-plugin-manager~=0.0.1
+google_trans_new~=1.1
