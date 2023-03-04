@@ -69,7 +69,7 @@ setup(
     name='googletranslate_neon_plugin',
     version=version,
     description='',
-    url='',
+    url='https://github.com/NeonGeckoCom/neon-lang-plugin-google_translate',
     author='Neongecko',
     author_email='developers@neon.ai',
     license='Apache-2.0',
