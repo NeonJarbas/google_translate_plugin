@@ -74,7 +74,7 @@ setup(
     author_email='developers@neon.ai',
     license='Apache-2.0',
     packages=['googletranslate_neon_plugin'],
-    install_requires=get_requirements("requirements/requirements.txt"),
+    install_requires=get_requirements("requirements.txt"),
     zip_safe=True,
     classifiers=[
         'Development Status :: 3 - Alpha',
