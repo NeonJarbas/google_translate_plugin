@@ -1,27 +1,17 @@
+# This workflow will run unit tests
+
 name: Run Unit Tests
 on:
   pull_request:
   workflow_dispatch:
 
 jobs:
-  build_tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
-      - name: Install Build Tools
-        run: |
-          python -m pip install build wheel
-      - name: Build Distribution Packages
-        run: |
-          python setup.py bdist_wheel
+  py_build_tests:
+    uses: neongeckocom/.github/.github/workflows/python_build_tests.yml@master
   unit_tests:
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9]
+        python-version: [3.7, 3.8, 3.9, '3.10']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -34,13 +24,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements/requirements.txt
           pip install -r requirements/test_requirements.txt
-      - name: Get Credential
-        run: |
-            mkdir -p ~/.local/share/neon
-            echo $LIBRE_CREDS > ~/.local/share/neon/libre.json
-        shell: bash
-        env:
-          AMAZON_CREDS: ${{secrets.amazon_creds}}
       - name: Test Language Detector
         run: |
           pytest tests/lang_detect_tests.py --doctest-modules --junitxml=tests/lang-detect-test-results.xml

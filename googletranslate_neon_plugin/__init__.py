@@ -29,7 +29,7 @@
 
 from ovos_plugin_manager.templates.language import LanguageDetector,\
     LanguageTranslator
-from google_tx import google_translator
+from google_trans_new import google_translator
 
 
 class GoogleTranslator(LanguageTranslator):
