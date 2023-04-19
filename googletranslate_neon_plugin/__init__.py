@@ -29,37 +29,40 @@
 
 from ovos_plugin_manager.templates.language import LanguageDetector,\
     LanguageTranslator
-from google_tx import google_translator
+from googletrans import Translator
 
 
 class GoogleTranslator(LanguageTranslator):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.translator = google_translator()
+        self.translator = Translator()
         self.boost = False
 
-    def translate(self, text, target=None, source=None):
+    def translate(self,
+                  item: str,
+                  target: str = "",
+                  source: str = ""):
+
         if self.boost and not source:
             source = self.default_language
         target = target or self.internal_language
-        if source:
-            tx = self.translator.translate(text, lang_src=source.split("-")[0],
-                                           lang_tgt=target.split("-")[0])
-        else:
-            tx = self.translator.translate(text, lang_tgt=target.split("-")[0])
-        return tx.strip()
+        source = source.split("-")[0] or 'auto'
+        
+        return self.translator.translate(item,
+                                         dest=target.split("-")[0],
+                                         src=source).text.strip()
 
 
 class GoogleDetector(LanguageDetector):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.translator = google_translator()
+        self.translator = Translator()
 
     def detect(self, text):
         tx = self.translator.detect(text)
-        return tx[0] or self.default_language
+        return tx.lang or self.default_language
 
     def detect_probs(self, text):
         tx = self.translator.detect(text)
-        return {"lang_code": tx[0], "lang": tx[1]}
+        return {"lang_code": tx.lang, "conf": tx.confidence}
 

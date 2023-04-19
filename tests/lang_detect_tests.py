@@ -44,7 +44,9 @@ class LangDetectTests(unittest.TestCase):
     def test_detector_probs(self):
         scores = self.detector.detect_probs('hello')
         self.assertIsInstance(scores, dict)
-
+        self.assertEqual(scores["lang_code"], "en")
+        # doesnt work atm
+        #self.assertIsInstance(scores["conf"], float)
 
 if __name__ == '__main__':
     unittest.main()

@@ -40,6 +40,12 @@ class LangTranslateTests(unittest.TestCase):
     def test_translate_spec_input(self):
         translated = self.translator.translate("hello", "es", "en")
         self.assertEqual(translated.lower(), "hola")
+        # full lang code
+        translated = self.translator.translate("hello", "es-es", "en-us")
+        self.assertEqual(translated.lower(), "hola")
+        # auto detect
+        translated = self.translator.translate("hello", "es")
+        self.assertEqual(translated.lower(), "hola")
 
     def test_translate_invalid(self):
         invalid_str = "abcdefg"
