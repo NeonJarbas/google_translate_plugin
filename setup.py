@@ -38,7 +38,6 @@ DETECT_PLUGIN_ENTRY_POINT = 'googletranslate_detection_plug = googletranslate_ne
 
 def get_requirements(requirements_filename: str):
     requirements_file = join(abspath(dirname(__file__)), "requirements", requirements_filename)
-    print(requirements_file)
     with open(requirements_file, 'r', encoding='utf-8') as r:
         requirements = r.readlines()
     requirements = [r.strip() for r in requirements if r.strip() and not r.strip().startswith("#")]
