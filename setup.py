@@ -29,13 +29,16 @@
 # SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from setuptools import setup
+from os.path import join, abspath, dirname
+from os import getenv
 
 PLUGIN_ENTRY_POINT = 'googletranslate_plug = googletranslate_neon_plugin:GoogleTranslator'
 
 DETECT_PLUGIN_ENTRY_POINT = 'googletranslate_detection_plug = googletranslate_neon_plugin:GoogleDetector'
 
 def get_requirements(requirements_filename: str):
-    requirements_file = path.join(path.abspath(path.dirname(__file__)), "requirements", requirements_filename)
+    requirements_file = join(abspath(dirname(__file__)), "requirements", requirements_filename)
+    print(requirements_file)
     with open(requirements_file, 'r', encoding='utf-8') as r:
         requirements = r.readlines()
     requirements = [r.strip() for r in requirements if r.strip() and not r.strip().startswith("#")]
@@ -70,8 +73,7 @@ setup(
     author_email='developers@neon.ai',
     license='Apache-2.0',
     packages=['googletranslate_neon_plugin'],
-    install_requires=["ovos-plugin-manager>=0.0.1a2",
-                      "google_tx"],
+    install_requires=get_requirements("requirements.txt"),
     zip_safe=True,
     classifiers=[
         'Development Status :: 3 - Alpha',
